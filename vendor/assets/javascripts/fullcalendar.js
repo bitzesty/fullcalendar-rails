@@ -864,7 +864,7 @@ function EventManager(options, _sources) {
 	t.removeEvents = removeEvents;
 	t.clientEvents = clientEvents;
 	t.normalizeEvent = normalizeEvent;
-	
+	t.removeEventSources = removeEventSources;
 	
 	// imports
 	var trigger = t.trigger;
@@ -908,7 +908,6 @@ function EventManager(options, _sources) {
 			fetchEventSource(sources[i], fetchID);
 		}
 	}
-	
 	
 	function fetchEventSource(source, fetchID) {
 		_fetchEventSource(source, function(events) {
@@ -1041,6 +1040,13 @@ function EventManager(options, _sources) {
 		});
 		reportEvents(cache);
 	}
+
+	function removeEventSources() {
+    sources = [];
+		// remove all client events from all sources
+		cache = [];
+		reportEvents(cache);
+  }
 	
 	
 	
